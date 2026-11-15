@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dch4ub378vwbq"]
+
+[ext_resource type="Script" uid="uid://ctbbufaquhdek" path="res://images/ghost.gd" id="1_41nkq"]
+[ext_resource type="Texture2D" uid="uid://cjhdaq2fkb4gf" path="res://images/ghost3.png" id="1_ff2av"]
+[ext_resource type="Texture2D" uid="uid://dttmq7dyef8h4" path="res://images/ghost2.png" id="2_41nkq"]
+[ext_resource type="Texture2D" uid="uid://bxarhfkeoomgr" path="res://images/ghost1.png" id="3_ljs81"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g443r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ff2av")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ff2av")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_41nkq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ljs81")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Ghost" type="AnimatableBody2D" unique_id=1804024687]
+scale = Vector2(0.69, 0.69)
+script = ExtResource("1_41nkq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1600275048]
+scale = Vector2(0.09, 0.09)
+sprite_frames = SubResource("SpriteFrames_g443r")
+animation = &"run"
+frame = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1047291940]
+position = Vector2(-158.76813, -90.57268)
+scale = Vector2(1.884058, 1.1502441)
+polygon = PackedVector2Array(44.92308, 22.480057, 117.92308, 23.480057, 116.92308, 137.48004, 42.92308, 136.48004)

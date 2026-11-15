@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://5b4nlv4kof4v"]
+
+[ext_resource type="Script" uid="uid://o7phhc8clof8" path="res://Scenes/credits.gd" id="1_i8h6y"]
+[ext_resource type="Texture2D" uid="uid://xm46fpsagyx4" path="res://images/backgroundstart.png" id="2_xbebw"]
+
+[node name="Credits" type="Control" unique_id=1970150688]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i8h6y")
+
+[node name="BackButton" type="Button" parent="." unique_id=1607839902]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Back"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1884021532]
+position = Vector2(572, 328)
+scale = Vector2(0.305, 0.305)
+texture = ExtResource("2_xbebw")
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

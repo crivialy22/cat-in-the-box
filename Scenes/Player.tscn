@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dqer7cqkqlwg6"]
+
+[ext_resource type="Script" uid="uid://b8d6wkdy07pvy" path="res://character_body_2d.gd" id="1_52ee3"]
+[ext_resource type="PackedScene" uid="uid://dch4ub378vwbq" path="res://Scenes/Ghost.tscn" id="2_bhhdu"]
+[ext_resource type="Texture2D" uid="uid://ryn3cf8u54vg" path="res://images/kakis0.png" id="3_megsn"]
+[ext_resource type="Texture2D" uid="uid://cwvr5aiuybvgq" path="res://images/kakis1.png" id="4_yoq75"]
+[ext_resource type="Texture2D" uid="uid://b4brfd4a83qeg" path="res://images/catframe1.png" id="5_ksbbd"]
+[ext_resource type="Texture2D" uid="uid://b35qcgpffhgm1" path="res://images/catframe2.png" id="6_glx4g"]
+[ext_resource type="Texture2D" uid="uid://cepgryd1cmb4k" path="res://images/catframe3.png" id="7_miouo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yqovx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_megsn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yoq75")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ksbbd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_glx4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_miouo")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1800174470 node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("1_52ee3")
+ghost_scene = ExtResource("2_bhhdu")
+spawn_point = NodePath("")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1159701386]
+scale = Vector2(0.09, 0.09)
+sprite_frames = SubResource("SpriteFrames_yqovx")
+animation = &"idle"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1988708120]
+limit_left = 0
+limit_right = 4950
+position_smoothing_enabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1037107349]
+position = Vector2(-20, -2)
+polygon = PackedVector2Array(-34, -42, 48, -41, 50, 54, -39, 59, -35, -44)

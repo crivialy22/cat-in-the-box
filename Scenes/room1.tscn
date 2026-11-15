@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dmdsaltqewnqs"]
+
+[ext_resource type="Texture2D" uid="uid://f4qnqry2n2eh" path="res://images/room1.png" id="1_2nqm4"]
+[ext_resource type="Script" uid="uid://cpn3tspyxu38k" path="res://Scenes/room_1.gd" id="1_gxaye"]
+[ext_resource type="Texture2D" uid="uid://cy67fsju7ythi" path="res://images/room1nostalgia.png" id="2_6vwvs"]
+[ext_resource type="PackedScene" uid="uid://dqer7cqkqlwg6" path="res://Scenes/Player.tscn" id="3_qk62d"]
+[ext_resource type="PackedScene" uid="uid://dg4pho64aqm80" path="res://Scenes/hazard.tscn" id="4_sb2y3"]
+[ext_resource type="Script" uid="uid://bddftlbh5jy8k" path="res://Scenes/box.gd" id="6_u3bsr"]
+[ext_resource type="Texture2D" uid="uid://brxtwfuwqpj1r" path="res://images/box.png" id="7_v2ki8"]
+
+[node name="Room1" type="Node2D" unique_id=733750383]
+script = ExtResource("1_gxaye")
+new_background = ExtResource("2_6vwvs")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1119446047]
+position = Vector2(1740, 325)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=882770697]
+position = Vector2(930, 311)
+scale = Vector2(0.5, 0.5)
+
+[node name="background" type="Sprite2D" parent="StaticBody2D" unique_id=1807294340]
+position = Vector2(18, -74)
+texture = ExtResource("1_2nqm4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=775652390]
+position = Vector2(-14, 662)
+polygon = PackedVector2Array(-1820, -84, 1896, -94, 1886, 154, -1842, 112)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1790045482]
+position = Vector2(-14, 662)
+polygon = PackedVector2Array(-1814, -1592, 1902, -1602, 1892, -1354, -1836, -1396)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=369401759]
+position = Vector2(-1872, 936)
+rotation = 1.5707964
+scale = Vector2(0.43284228, 1)
+polygon = PackedVector2Array(-4324.747, -126, -608.74585, -136, -618.74585, 112, -4346.747, 70)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=665908997]
+position = Vector2(1858, 1004)
+rotation = 1.5707964
+scale = Vector2(0.43284228, 1)
+polygon = PackedVector2Array(-4324.747, -126, -608.74585, -136, -618.74585, 112, -4346.747, 70)
+
+[node name="Player" parent="." unique_id=1800174470 node_paths=PackedStringArray("spawn_point") instance=ExtResource("3_qk62d")]
+spawn_point = NodePath("../SpawnPoint")
+
+[node name="Camera2D" parent="Player" index="1" unique_id=1988708120]
+limit_top = -70
+limit_right = 1875
+limit_bottom = 615
+
+[node name="cupboard" type="StaticBody2D" parent="." unique_id=2095453459]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="cupboard" unique_id=125759327]
+position = Vector2(-93.05017, -16.879639)
+scale = Vector2(1.0894885, 1.0704787)
+polygon = PackedVector2Array(1119, 313, 1383, 310, 1380, 540, 1124, 545)
+
+[node name="thingy" type="StaticBody2D" parent="." unique_id=958722419]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="thingy" unique_id=849983662]
+position = Vector2(0.0010986328, -37.53772)
+scale = Vector2(0.99999934, 1.099385)
+polygon = PackedVector2Array(1587, 397, 1625, 396, 1623, 457, 1583, 457)
+
+[node name="case" type="StaticBody2D" parent="." unique_id=274590522]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="case" unique_id=564825765]
+position = Vector2(1428.0001, 537)
+rotation = -1.4546611
+polygon = PackedVector2Array(38.058655, -27.59607, 45.640106, 46.021362, -49.481476, 59.131836, -62.012543, -31.023438)
+
+[node name="hazard" parent="." unique_id=989233010 instance=ExtResource("4_sb2y3")]
+
+[node name="RectangleShape2D" parent="hazard" index="0" unique_id=1570816013]
+position = Vector2(-869.1334, -35.233093)
+scale = Vector2(1.0524395, 0.653068)
+
+[node name="box" type="Area2D" parent="." unique_id=67108274]
+script = ExtResource("6_u3bsr")
+
+[node name="Sprite2D" type="Sprite2D" parent="box" unique_id=1880691940]
+modulate = Color(0.039215688, 0.28235295, 1, 1)
+position = Vector2(187, 507)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_v2ki8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="box" unique_id=828817768]
+position = Vector2(185, 512)
+polygon = PackedVector2Array(-106, -52, 67, -49, 66, 62, -97, 66)
+
+[connection signal="body_entered" from="box" to="box" method="_on_body_entered"]
+[connection signal="box_activated" from="box" to="." method="_on_box_box_activated"]
+
+[editable path="Player"]
+[editable path="hazard"]

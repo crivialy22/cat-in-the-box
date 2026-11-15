@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dg4pho64aqm80"]
+
+[ext_resource type="Script" uid="uid://cdysxy02xtdwc" path="res://Scenes/hazard.gd" id="1_ci3js"]
+
+[node name="hazard" type="Area2D" unique_id=989233010]
+script = ExtResource("1_ci3js")
+
+[node name="RectangleShape2D" type="CollisionPolygon2D" parent="." unique_id=1570816013]
+position = Vector2(-2667.3071, 362.40546)
+scale = Vector2(2.464699, 0.39152867)
+polygon = PackedVector2Array(1880.2828, 308.00952, 2044.1875, 305.45532, 2040.536, 504.67456, 1882, 516)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
